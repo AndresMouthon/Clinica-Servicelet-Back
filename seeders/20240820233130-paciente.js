@@ -11,7 +11,6 @@ module.exports = {
         apellidos: 'Tirado',
         genero: 'Masculino',
         fecha_nacimiento: "22/08/2001",
-        pais: 'Colombia',
         departamento: 'Cordoba',
         ciudad: 'Monteria',
       }

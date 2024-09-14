@@ -11,7 +11,7 @@ const getPacienteByCedula = async (documento = "") => {
             {
                 model: Respuesta,
                 required: false,
-                attributes: ["id", "pregunta_id", "respuesta", "paciente_documento"],
+                attributes: ["id", "pregunta_id", "respuesta", "paciente_id"],
             },
             {
                 model: TipoDocumento,
@@ -30,16 +30,35 @@ const getPacientes = async () => {
             {
                 model: Respuesta,
                 required: false,
-                attributes: ["pregunta_id", "respuesta", "paciente_documento"],
+                attributes: ["pregunta_id", "respuesta", "paciente_id"],
             }
         ]
     });
     return paciente;
 };
 
+const getPacienteByDocumentacion = async (paciente = {}) => {
+    const { tipo_documento_id, documento } = paciente;
+    const pacienteByDocumentacion = await Paciente.findOne({
+        where: {
+            tipo_documento_id,
+            documento,
+        },
+        include: [
+            {
+                model: Respuesta,
+                required: false,
+                attributes: ["pregunta_id", "respuesta", "paciente_id"],
+            }
+        ]
+    });
+    if (!pacienteByDocumentacion) return [];
+    return [pacienteByDocumentacion];
+};
+
 const postCrearPaciente = async (paciente = {}) => {
     const { tipo_documento_id, documento, nombres, apellidos, genero, fecha_nacimiento, pais, departamento, ciudad } = paciente;
-    await Paciente.create({
+    const nuevoPaciente = await Paciente.create({
         tipo_documento_id,
         documento,
         nombres,
@@ -50,7 +69,7 @@ const postCrearPaciente = async (paciente = {}) => {
         departamento,
         ciudad
     });
-    return "Paciente creado";
+    return nuevoPaciente;
 };
 
 const putActualizarPaciente = async (documento = "", paciente = {}) => {
@@ -72,10 +91,30 @@ const putActualizarPaciente = async (documento = "", paciente = {}) => {
     return "Paciente actualizado";
 };
 
-const deleteEliminarPaciente = async (documento = "") => {
+const putActualizarPacienteHome = async (id = "", paciente = {}) => {
+    const { tipo_documento_id, documento, nombres, apellidos, genero, fecha_nacimiento, pais, departamento, ciudad } = paciente;
+    await Paciente.update({
+        nombres,
+        apellidos,
+        genero,
+        fecha_nacimiento,
+        pais,
+        departamento,
+        ciudad,
+        documento,
+        tipo_documento_id,
+    }, {
+        where: {
+            id
+        }
+    });
+    return paciente;
+};
+
+const deleteEliminarPaciente = async (id = "") => {
     await Paciente.destroy({
         where: {
-            documento
+            id
         }
     });
     return "Paciente eliminado";
@@ -87,4 +126,6 @@ module.exports = {
     postCrearPaciente,
     putActualizarPaciente,
     deleteEliminarPaciente,
+    putActualizarPacienteHome,
+    getPacienteByDocumentacion,
 };

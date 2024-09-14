@@ -17,8 +17,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      paciente_documento: {
-        type: Sequelize.STRING,
+      paciente_id: {
+        type: Sequelize.INTEGER,
         allowNull: false
       },
       created_at: {

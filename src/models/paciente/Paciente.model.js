@@ -5,6 +5,11 @@ const { TipoDocumento } = require("./TipoDocumento.model");
 class Paciente extends Model { };
 
 Paciente.init({
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
     tipo_documento_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -16,7 +21,6 @@ Paciente.init({
     documento: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
     },
     nombres: {
         type: DataTypes.STRING,
@@ -33,10 +37,6 @@ Paciente.init({
     fecha_nacimiento: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    pais: {
-        type: DataTypes.STRING,
-        allowNull: false,
     },
     departamento: {
         type: DataTypes.STRING,

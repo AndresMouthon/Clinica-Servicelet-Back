@@ -24,12 +24,12 @@ Respuesta.init({
         type: DataTypes.STRING,
         allowNull: false
     },
-    paciente_documento: {
-        type: DataTypes.STRING,
+    paciente_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         references: {
             model: Paciente,
-            key: 'documento'
+            key: 'id'
         }
     },
     created_at: {
@@ -52,7 +52,7 @@ Respuesta.init({
 Pregunta.hasMany(Respuesta, { foreignKey: 'pregunta_id' });
 Respuesta.belongsTo(Pregunta, { foreignKey: 'pregunta_id' });
 
-Paciente.hasMany(Respuesta, { foreignKey: 'paciente_documento' });
-Respuesta.belongsTo(Paciente, { foreignKey: 'paciente_documento' });
+Paciente.hasMany(Respuesta, { foreignKey: 'paciente_id' });
+Respuesta.belongsTo(Paciente, { foreignKey: 'paciente_id' });
 
 module.exports = { Respuesta };

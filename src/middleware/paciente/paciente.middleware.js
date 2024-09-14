@@ -7,7 +7,7 @@ const verificarDocumento = async (req, res, next) => {
         const pacienteExistente = await getPacienteByCedula(documento);
         if (pacienteExistente.length > 0 && req.path.includes('/crear-paciente')) {
             return res.json({ mensaje: "El paciente ya existe" });
-        } else if (pacienteExistente.length === 0 && (req.path.includes('/actualizar-paciente') || req.path.includes('/eliminar-paciente'))) {
+        } else if (pacienteExistente.length === 0 && (req.path.includes('/actualizar-paciente'))) {
             return res.json({ mensaje: "El paciente no existe" });
         };
         next();
@@ -18,8 +18,8 @@ const verificarDocumento = async (req, res, next) => {
 
 const verificarAfiliacion = async (req, res, next) => {
     try {
-        const documento = req.params.documento || req.body.documento;
-        const respuestas = await getRespuestasByPaciente(documento);
+        const id = req.params.id || req.body.id;
+        const respuestas = await getRespuestasByPaciente(id);
         if (respuestas.length > 0) {
             return res.json({ mensaje: "El paciente ya tiene una afiliacion, por lo que no puede ser eliminado" });
         }

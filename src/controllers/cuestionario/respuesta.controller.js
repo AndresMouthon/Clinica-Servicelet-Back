@@ -1,9 +1,9 @@
 const { Respuesta } = require("../../models/respuesta/Respuesta.model");
 
-const getRespuestasByPaciente = async (documento = "") => {
+const getRespuestasByPaciente = async (id = "") => {
     const respuestas = await Respuesta.findAll({
         where: {
-            paciente_documento: documento
+            paciente_id: id
         }
     });
     return respuestas;
@@ -11,9 +11,9 @@ const getRespuestasByPaciente = async (documento = "") => {
 
 const postCrearRespuesta = async (respuestas = []) => {
     for (const response of respuestas) {
-        const { paciente_documento, pregunta_id, respuesta } = response;
+        const { paciente_id, pregunta_id, respuesta } = response;
         await Respuesta.create({
-            paciente_documento,
+            paciente_id,
             pregunta_id,
             respuesta,
         });
@@ -21,16 +21,16 @@ const postCrearRespuesta = async (respuestas = []) => {
     return "Respuestas registradas";
 };
 
-const putActualizarRespuesta = async (documento = "", respuestas = []) => {
+const putActualizarRespuesta = async (id = "", respuestas = []) => {
     for (const response of respuestas) {
-        if (documento === response.paciente_documento) {
+        if (id === response.paciente_id) {
             console.log(response);
             const { respuesta, pregunta_id } = response;
             await Respuesta.update(
                 { respuesta },
                 {
                     where: {
-                        paciente_documento: documento,
+                        paciente_id: id,
                         pregunta_id
                     }
                 }

@@ -43,15 +43,6 @@ const validarBodyPaciente = [
     body("fecha_nacimiento")
         .exists()
         .withMessage("La fecha de nacimiento es requerida"),
-    body("pais")
-        .exists()
-        .withMessage("El pais es requerido")
-        .isString()
-        .withMessage("El pais debe ser de tipo texto")
-        .isLength({ min: 3 })
-        .withMessage("El pais debe tener al menos 3 caracteres")
-        .isLength({ max: 50 })
-        .withMessage("El pais debe tener como maximo 50 caracteres"),
     body("departamento")
         .exists()
         .withMessage("El departamento es requerido")

@@ -12,13 +12,13 @@ ruta.post("/crear-respuesta",
     }
 );
 
-ruta.put("/actualizar-respuesta/:documento",
+ruta.put("/actualizar-respuesta/:id",
     async (req, res) => {
         try {
             if (req.body.length === 0) {
                 res.status(200).json({ mensaje: "Actualizacion correcta" });
             } else {
-                const response = await putActualizarRespuesta(req.params.documento, req.body);
+                const response = await putActualizarRespuesta(req.params.id, req.body);
                 res.status(200).json({ mensaje: response });
             }
         } catch (error) {
