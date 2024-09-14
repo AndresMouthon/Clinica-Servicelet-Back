@@ -7,7 +7,6 @@ const { roles } = require("../../utils/constants.util");
 const { SECRETARIA } = roles;
 
 ruta.get("/todos-los-tipos-documento", (req, res) => {
-    jwtMiddleware([SECRETARIA]),
         getTodosLosTipoDocumentos()
             .then((todosLosTipoDocumentos) => {
                 res.status(200).json(todosLosTipoDocumentos);
