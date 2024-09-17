@@ -19,6 +19,10 @@ OpcionPregunta.init({
             key: "id"
         }
     },
+    opcion: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
@@ -31,8 +35,8 @@ OpcionPregunta.init({
     },
 }, {
     sequelize,
-    modelName: "Encuesta",
-    tableName: "encuestas",
+    modelName: "OpcionPregunta",
+    tableName: "opciones-preguntas",
     timestamps: false,
 });
 
