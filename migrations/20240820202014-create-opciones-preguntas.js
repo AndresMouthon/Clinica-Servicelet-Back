@@ -2,14 +2,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('tipos_documentos', {
+    await queryInterface.createTable('opciones-preguntas', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
-      tipo_documento: {
+      pregunta_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      opcion: {
         type: Sequelize.STRING,
         allowNull: false
       },
@@ -25,10 +29,10 @@ module.exports = {
       },
     }, {
       timestamps: false,
-      modelName: "tipos_documentos",
+      modelName: "opciones-preguntas",
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('tipos_documentos');
+    await queryInterface.dropTable('opciones-preguntas');
   }
 };

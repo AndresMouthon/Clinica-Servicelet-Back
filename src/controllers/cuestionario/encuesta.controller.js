@@ -1,5 +1,5 @@
-const { Encuesta } = require("../../models/encuesta/Encuesta.model");
-const { Pregunta } = require("../../models/pregunta/Pregunta.model");
+const { Encuesta } = require("../../models/cuestionario/Encuesta.model");
+const { Pregunta } = require("../../models/cuestionario/Pregunta.model");
 
 const getTodasLasEncuestas = async () => {
     const encuestas = await Encuesta.findAll(

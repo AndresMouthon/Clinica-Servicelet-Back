@@ -1,6 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
-const { Usuario } = require("../usuario/Usuario.model");
+const { Usuario } = require("./Usuario.model");
 
 class Administrativo extends Model { };
 

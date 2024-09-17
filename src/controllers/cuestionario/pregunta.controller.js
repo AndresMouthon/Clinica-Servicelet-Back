@@ -1,5 +1,5 @@
 const { limpiarDatosSensibles } = require("../../middleware/control-flujo-data.middleware");
-const { Pregunta } = require("../../models/pregunta/Pregunta.model");
+const { Pregunta } = require("../../models/cuestionario/Pregunta.model");
 
 const getTodasPreguntas = async () => {
     const preguntas = await Pregunta.findAll();

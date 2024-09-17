@@ -1,31 +1,23 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
-const { Encuesta } = require("../encuesta/Encuesta.model");
+const { Pregunta } = require("./Pregunta.model");
 
-class Pregunta extends Model { };
+class OpcionPregunta extends Model { };
 
-Pregunta.init({
+OpcionPregunta.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
     },
-    encuesta_id: {
+    pregunta_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: Encuesta,
-            key: 'id'
+            model: Pregunta,
+            key: "id"
         }
-    },
-    pregunta: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    tipo_pregunta: {
-        type: DataTypes.INTEGER,
-        allowNull: false
     },
     created_at: {
         type: DataTypes.DATE,
@@ -39,12 +31,12 @@ Pregunta.init({
     },
 }, {
     sequelize,
-    modelName: "Preguntas",
-    tableName: "preguntas",
+    modelName: "Encuesta",
+    tableName: "encuestas",
     timestamps: false,
 });
 
-Encuesta.hasOne(Pregunta, { foreignKey: 'encuesta_id' });
-Pregunta.belongsTo(Encuesta, { foreignKey: 'encuesta_id' });
+Pregunta.hasOne(OpcionPregunta, { foreignKey: 'pregunta_id' });
+OpcionPregunta.belongsTo(Pregunta, { foreignKey: 'pregunta_id' });
 
-module.exports = { Pregunta };
+module.exports = { Encuesta };

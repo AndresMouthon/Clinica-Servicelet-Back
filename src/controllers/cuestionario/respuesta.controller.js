@@ -1,4 +1,4 @@
-const { Respuesta } = require("../../models/respuesta/Respuesta.model");
+const { Respuesta } = require("../../models/cuestionario/Respuesta.model");
 
 const getRespuestasByPaciente = async (id = "") => {
     const respuestas = await Respuesta.findAll({
@@ -23,8 +23,7 @@ const postCrearRespuesta = async (respuestas = []) => {
 
 const putActualizarRespuesta = async (id = "", respuestas = []) => {
     for (const response of respuestas) {
-        if (id === response.paciente_id) {
-            console.log(response);
+        if (Number(id) === response.paciente_id) {
             const { respuesta, pregunta_id } = response;
             await Respuesta.update(
                 { respuesta },

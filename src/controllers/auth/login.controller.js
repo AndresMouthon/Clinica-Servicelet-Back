@@ -1,7 +1,7 @@
 const { createToken } = require("../../utils/jwt.util");
 const { comparePassword } = require("../../utils/functions.util");
 const { encriptacion, LLAVE_SEGUNDA } = require("../../utils/crypto.util");
-const { Usuario } = require("../../models/usuario/Usuario.model");
+const { Usuario } = require("../../models/persona/Usuario.model");
 
 const login = async (cedula = "", passwordParam = "") => {
     try {

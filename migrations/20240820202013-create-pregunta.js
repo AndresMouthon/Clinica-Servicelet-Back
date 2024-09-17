@@ -17,7 +17,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
-      tipo_pregunta: {
+      seccion_pregunta: {
         type: Sequelize.INTEGER,
         allowNull: false
       },

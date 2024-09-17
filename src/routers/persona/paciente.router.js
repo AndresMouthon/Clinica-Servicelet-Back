@@ -1,7 +1,7 @@
 const ruta = require("express").Router();
 const { roles } = require("../../utils/constants.util");
 const { SECRETARIA } = roles;
-const { validarBodyPaciente } = require("../../schemas/paciente/paciente.schema");
+const { validarBodyPaciente } = require("../../schemas/persona/paciente.schema");
 const {
     getPacienteByCedula,
     getPacientes,
@@ -10,10 +10,10 @@ const {
     deleteEliminarPaciente,
     putActualizarPacienteHome,
     getPacienteByDocumentacion,
-} = require("../../controllers/paciente/pacinte.controller");
+} = require("../../controllers/persona/pacinte.controller");
 const { jwtMiddleware } = require("../../middleware/auth/jwt.middleware");
 const { validacionDeParametros } = require("../../middleware/validaciones.middleware");
-const { verificarDocumento, verificarAfiliacion } = require("../../middleware/paciente/paciente.middleware");
+const { verificarDocumento, verificarAfiliacion } = require("../../middleware/persona/paciente.middleware");
 
 ruta.get("/todos-los-pacientes",
     jwtMiddleware([SECRETARIA]),
@@ -104,7 +104,6 @@ ruta.post("/guardar-paciente",
         let response;
         try {
             if (req.body.id) {
-                console.log(req.body.id);
                 response = await putActualizarPacienteHome(req.body.id, req.body);
             } else {
                 response = await postCrearPaciente(req.body);

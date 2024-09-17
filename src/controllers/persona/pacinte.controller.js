@@ -1,6 +1,5 @@
-const { Paciente } = require("../../models/paciente/Paciente.model");
-const { TipoDocumento } = require("../../models/paciente/TipoDocumento.model");
-const { Respuesta } = require("../../models/respuesta/Respuesta.model");
+const { Paciente } = require("../../models/persona/Paciente.model");
+const { Respuesta } = require("../../models/cuestionario/Respuesta.model");
 
 const getPacienteByCedula = async (documento = "") => {
     const paciente = await Paciente.findOne({
@@ -13,11 +12,6 @@ const getPacienteByCedula = async (documento = "") => {
                 required: false,
                 attributes: ["id", "pregunta_id", "respuesta", "paciente_id"],
             },
-            {
-                model: TipoDocumento,
-                required: false,
-                attributes: ["id", "tipo_documento"],
-            }
         ]
     });
     if (!paciente) return [];

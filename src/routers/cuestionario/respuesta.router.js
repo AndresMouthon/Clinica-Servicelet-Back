@@ -15,6 +15,7 @@ ruta.post("/crear-respuesta",
 ruta.put("/actualizar-respuesta/:id",
     async (req, res) => {
         try {
+            console.log(req.params.id);
             if (req.body.length === 0) {
                 res.status(200).json({ mensaje: "Actualizacion correcta" });
             } else {

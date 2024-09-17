@@ -9,8 +9,8 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      tipo_documento_id: {
-        type: Sequelize.INTEGER,
+      tipo_documento: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       documento: {

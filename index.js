@@ -9,7 +9,7 @@ const { sequelize } = require("./config/sequelize.config");
 
 (async () => {
     try {
-        await sequelize.sync({ alter: true });
+        await sequelize.sync({ force: true });
     } catch (error) {
         console.log(error);
     }
@@ -23,9 +23,8 @@ const rutaPrincipal = express.Router();
 const rutaLogin = require("./src/routers/auth/login.router");
 const rutaEncuesta = require("./src/routers/cuestionario/encuesta.router");
 const rutaPreguntas = require("./src/routers/cuestionario/pregunta.router");
-const rutaPaciente = require("./src/routers/paciente/paciente.router");
-const rutaTipoDocumento = require("./src/routers/paciente/tipo-documento.router");
 const rutaRespuesta = require("./src/routers/cuestionario/respuesta.router");
+const rutaPaciente = require("./src/routers/persona/paciente.router");
 
 const { jwtVerifyTimeToken } = require("./src/utils/jwt.util");
 
@@ -37,7 +36,6 @@ rutaPrincipal.use(rutaLogin.indice, rutaLogin.ruta);
 rutaPrincipal.use(rutaEncuesta.indice, rutaEncuesta.ruta);
 rutaPrincipal.use(rutaPreguntas.indice, rutaPreguntas.ruta);
 rutaPrincipal.use(rutaPaciente.indice, rutaPaciente.ruta);
-rutaPrincipal.use(rutaTipoDocumento.indice, rutaTipoDocumento.ruta);
 rutaPrincipal.use(rutaRespuesta.indice, rutaRespuesta.ruta);
 
 app.use(jwtVerifyTimeToken);

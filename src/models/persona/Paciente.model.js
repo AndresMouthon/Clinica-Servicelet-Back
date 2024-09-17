@@ -1,31 +1,45 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
-const { Rol } = require("../rol/Rol.model");
 
-class Usuario extends Model {}
+class Paciente extends Model { };
 
-Usuario.init({
+Paciente.init({
     id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
     },
-    cedula: {
+    tipo_documento: {
         type: DataTypes.STRING,
-        allowNull: false
-    },
-    password: {
-        type: DataTypes.STRING,
-        allowNull: false
-    },
-    rol_id: {
-        type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: Rol,
-            key: 'id'
-        }
+    },
+    documento: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    nombres: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    apellidos: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    genero: {
+        type: DataTypes.ENUM('Masculino', 'Femenino'),
+        allowNull: false,
+    },
+    fecha_nacimiento: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    departamento: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    ciudad: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     created_at: {
         type: DataTypes.DATE,
@@ -39,12 +53,9 @@ Usuario.init({
     },
 }, {
     sequelize,
-    modelName: "Usuario",
-    tableName: "usuarios",
+    modelName: "Paciente",
+    tableName: "pacientes",
     timestamps: false,
 });
 
-Rol.hasMany(Usuario, { foreignKey: 'rol_id' });
-Usuario.belongsTo(Rol, { foreignKey: 'rol_id' });
-
-module.exports = { Usuario }; // Exporta como objeto
+module.exports = { Paciente };

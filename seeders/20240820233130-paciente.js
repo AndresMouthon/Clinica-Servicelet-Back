@@ -5,7 +5,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.bulkInsert('pacientes', [
       {
-        tipo_documento_id: 1,
+        tipo_documento: "Cédula de ciudadanía",
         documento: '1032423123',
         nombres: 'Carlos Mario',
         apellidos: 'Tirado',

@@ -1,4 +1,4 @@
-const { getPacienteByCedula } = require("../../controllers/paciente/pacinte.controller");
+const { getPacienteByCedula } = require("../../controllers/persona/pacinte.controller");
 const { getRespuestasByPaciente } = require("../../controllers/cuestionario/respuesta.controller");
 
 const verificarDocumento = async (req, res, next) => {

@@ -1,18 +1,31 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
+const { Rol } = require("../rol/Rol.model");
 
-class TipoDocumento extends Model { };
+class Usuario extends Model {}
 
-TipoDocumento.init({
+Usuario.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
     },
-    tipo_documento: {
+    cedula: {
         type: DataTypes.STRING,
+        allowNull: false
+    },
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    rol_id: {
+        type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+            model: Rol,
+            key: 'id'
+        }
     },
     created_at: {
         type: DataTypes.DATE,
@@ -26,9 +39,12 @@ TipoDocumento.init({
     },
 }, {
     sequelize,
-    modelName: "TipoDocumento",
-    tableName: "tipos_documentos",
+    modelName: "Usuario",
+    tableName: "usuarios",
     timestamps: false,
 });
 
-module.exports = { TipoDocumento };
+Rol.hasMany(Usuario, { foreignKey: 'rol_id' });
+Usuario.belongsTo(Rol, { foreignKey: 'rol_id' });
+
+module.exports = { Usuario };
