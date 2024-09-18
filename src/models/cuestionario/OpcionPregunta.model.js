@@ -40,7 +40,7 @@ OpcionPregunta.init({
     timestamps: false,
 });
 
-Pregunta.hasOne(OpcionPregunta, { foreignKey: 'pregunta_id' });
+Pregunta.hasMany(OpcionPregunta, { foreignKey: 'pregunta_id' });
 OpcionPregunta.belongsTo(Pregunta, { foreignKey: 'pregunta_id' });
 
-module.exports = { Encuesta };
+module.exports = { OpcionPregunta };

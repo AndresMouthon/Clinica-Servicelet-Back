@@ -7,7 +7,7 @@ const verificarDocumento = async (req, res, next) => {
         const pacienteExistente = await getPacienteByCedula(documento);
         if (pacienteExistente.length > 0 && req.path.includes('/crear-paciente')) {
             return res.json({ mensaje: "El paciente ya existe" });
-        } else if (pacienteExistente.length === 0 && (req.path.includes('/actualizar-paciente'))) {
+        } else if (pacienteExistente.length === 0 && (req.path.includes('/eliminar-paciente'))) {
             return res.json({ mensaje: "El paciente no existe" });
         };
         next();

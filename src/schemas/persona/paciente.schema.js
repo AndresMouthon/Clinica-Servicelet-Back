@@ -1,15 +1,11 @@
 const { param, body } = require("express-validator");
 
 const validarBodyPaciente = [
-    body("tipo_documento_id")
+    body("tipo_documento")
         .exists()
         .withMessage("El tipo de documento es requerido")
-        .isInt()
-        .withMessage("El tipo de documento debe ser de tipo entero")
         .isLength({ min: 1 })
-        .withMessage("El tipo de documento debe ser de al menos 1 digito")
-        .isLength({ max: 3 })
-        .withMessage("El tipo de documento debe ser de maximo 3 digitos"),
+        .withMessage("El tipo de documento debe ser de al menos 1 digito"),
     body("documento")
         .exists()
         .withMessage("El documento es requerido")

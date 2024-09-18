@@ -51,35 +51,34 @@ const getPacienteByDocumentacion = async (paciente = {}) => {
 };
 
 const postCrearPaciente = async (paciente = {}) => {
-    const { tipo_documento_id, documento, nombres, apellidos, genero, fecha_nacimiento, pais, departamento, ciudad } = paciente;
+    const { tipo_documento, documento, nombres, apellidos, genero, fecha_nacimiento, departamento, ciudad } = paciente;
     const nuevoPaciente = await Paciente.create({
-        tipo_documento_id,
+        tipo_documento,
         documento,
         nombres,
         apellidos,
         genero,
         fecha_nacimiento,
-        pais,
         departamento,
         ciudad
     });
     return nuevoPaciente;
 };
 
-const putActualizarPaciente = async (documento = "", paciente = {}) => {
-    const { tipo_documento_id, nombres, apellidos, genero, fecha_nacimiento, pais, departamento, ciudad } = paciente;
+const putActualizarPaciente = async (id = "", paciente = {}) => {
+    const { tipo_documento, documento, nombres, apellidos, genero, fecha_nacimiento, departamento, ciudad } = paciente;
     await Paciente.update({
-        tipo_documento_id,
+        tipo_documento,
+        documento,
         nombres,
         apellidos,
         genero,
         fecha_nacimiento,
-        pais,
         departamento,
         ciudad
     }, {
         where: {
-            documento
+            id
         }
     });
     return "Paciente actualizado";

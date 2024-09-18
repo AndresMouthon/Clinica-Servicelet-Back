@@ -60,21 +60,23 @@ ruta.post("/crear-paciente",
     async (req, res) => {
         try {
             const response = await postCrearPaciente(req.body);
-            res.status(200).json({ mensaje: response });
+            res.status(200).json({
+                status: true, 
+                mensaje: response,
+             });
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
         }
     }
 );
 
-ruta.put("/actualizar-paciente/:documento",
+ruta.put("/actualizar-paciente/:id",
     jwtMiddleware([SECRETARIA]),
     validarBodyPaciente,
     validacionDeParametros,
-    verificarDocumento,
     async (req, res) => {
         try {
-            const response = await putActualizarPaciente(req.params.documento, req.body);
+            const response = await putActualizarPaciente(req.params.id, req.body);
             res.status(200).json({ mensaje: response });
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
@@ -85,7 +87,6 @@ ruta.put("/actualizar-paciente/:documento",
 ruta.delete("/eliminar-paciente/:id",
     jwtMiddleware([SECRETARIA]),
     validacionDeParametros,
-    verificarDocumento,
     verificarAfiliacion,
     async (req, res) => {
         try {
