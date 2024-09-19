@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('opciones-preguntas', [
       {
         pregunta_id: 1,
@@ -181,81 +181,93 @@ module.exports = {
         opcion: "No"
       },
       {
-      pregunta_id: 17,
-      opcion: "Sanitas"
+        pregunta_id: 17,
+        opcion: "Contributivo"
       },
       {
         pregunta_id: 17,
+        opcion: "Subcidiado"
+      },
+      {
+        pregunta_id: 17,
+        opcion: "Especial"
+      },
+      {
+        pregunta_id: 18,
+        opcion: "Sanitas"
+      },
+      {
+        pregunta_id: 18,
         opcion: "Sura"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "Compensar"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "Coomeva"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "Salud Total"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "EPS Famisanar"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "Nueva EPS"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "Medimás"
       },
       {
-        pregunta_id: 17,
+        pregunta_id: 18,
         opcion: "Asmet Salud"
       },
       {
-      pregunta_id: 18,
-      opcion: "SURA"
+        pregunta_id: 19,
+        opcion: "SURA"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "Colpatria"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "MAPFRE"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "Positiva"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "ARL Helm"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "ARL Bolívar"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "ARL Sanitas"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "ARL Equidad"
       },
       {
-        pregunta_id: 18,
+        pregunta_id: 19,
         opcion: "ARL Aliansalud"
       },
     ]);
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *

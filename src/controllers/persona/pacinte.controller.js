@@ -30,26 +30,6 @@ const getPacientes = async () => {
     });
     return paciente;
 };
-
-const getPacienteByDocumentacion = async (paciente = {}) => {
-    const { tipo_documento_id, documento } = paciente;
-    const pacienteByDocumentacion = await Paciente.findOne({
-        where: {
-            tipo_documento_id,
-            documento,
-        },
-        include: [
-            {
-                model: Respuesta,
-                required: false,
-                attributes: ["pregunta_id", "respuesta", "paciente_id"],
-            }
-        ]
-    });
-    if (!pacienteByDocumentacion) return [];
-    return [pacienteByDocumentacion];
-};
-
 const postCrearPaciente = async (paciente = {}) => {
     const { tipo_documento, documento, nombres, apellidos, genero, fecha_nacimiento, departamento, ciudad } = paciente;
     const nuevoPaciente = await Paciente.create({
@@ -120,5 +100,4 @@ module.exports = {
     putActualizarPaciente,
     deleteEliminarPaciente,
     putActualizarPacienteHome,
-    getPacienteByDocumentacion,
 };

@@ -18,25 +18,23 @@ const postCrearRespuesta = async (respuestas = []) => {
             respuesta,
         });
     }
-    return "Respuestas registradas";
+    return "Respuestas guardadas";
 };
 
-const putActualizarRespuesta = async (id = "", respuestas = []) => {
+const putActualizarRespuesta = async (paciente_id = "", respuestas = []) => {
     for (const response of respuestas) {
-        if (Number(id) === response.paciente_id) {
-            const { respuesta, pregunta_id } = response;
-            await Respuesta.update(
-                { respuesta },
-                {
-                    where: {
-                        paciente_id: id,
-                        pregunta_id
-                    }
+        const { respuesta, pregunta_id } = response;
+        await Respuesta.update(
+            { respuesta },
+            {
+                where: {
+                    paciente_id,
+                    pregunta_id
                 }
-            );
-        }
+            }
+        );
     }
-    return "Actualizacion correcta";
+    return "Respuestas guardadas";
 };
 
 module.exports = {

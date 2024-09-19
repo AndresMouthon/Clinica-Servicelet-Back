@@ -9,7 +9,6 @@ const {
     putActualizarPaciente,
     deleteEliminarPaciente,
     putActualizarPacienteHome,
-    getPacienteByDocumentacion,
 } = require("../../controllers/persona/pacinte.controller");
 const { jwtMiddleware } = require("../../middleware/auth/jwt.middleware");
 const { validacionDeParametros } = require("../../middleware/validaciones.middleware");
@@ -39,18 +38,6 @@ ruta.get("/paciente-por-cedula/:documento",
             });
     }
 );
-
-ruta.post("/buscar-paciente-por-documento",
-    async (req, res) => {
-        getPacienteByDocumentacion(req.body)
-            .then((getPacienteByCedula) => {
-                res.status(200).json(getPacienteByCedula);
-            })
-            .catch((error) => {
-                res.status(400).json({ mensaje: "La peticion fallo", error });
-            });
-    }
-)
 
 ruta.post("/crear-paciente",
     jwtMiddleware([SECRETARIA]),
