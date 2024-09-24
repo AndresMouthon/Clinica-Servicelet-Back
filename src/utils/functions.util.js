@@ -12,9 +12,11 @@ const inicializadorDeRoles = () => {
         ROLES.set(rol.nombreRol, rol.numeroRol);
     });
 };
+
 const init = () => {
     inicializadorDeRoles();
 };
+
 const hashPassword = (password) => {
     return new Promise((resolve, reject) => {
         bcrypt.hash(password, Number(process.env.SALT_ROUNDS), (err, hash) => {
@@ -27,6 +29,7 @@ const hashPassword = (password) => {
         });
     })
 };
+
 const comparePassword = (hash, password) => {
     return new Promise((resolve, reject) => {
         bcrypt.compare(password, hash, (err, result) => {

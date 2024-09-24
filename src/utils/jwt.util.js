@@ -52,7 +52,6 @@ const verifityRoles = (roles = [], rolAcceso = []) => {
     };
 };
 
-
 module.exports = {
     createToken,
     verifityTimeToken,

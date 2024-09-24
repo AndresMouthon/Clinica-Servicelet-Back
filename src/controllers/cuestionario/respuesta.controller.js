@@ -10,31 +10,49 @@ const getRespuestasByPaciente = async (id = "") => {
 };
 
 const postCrearRespuesta = async (respuestas = []) => {
-    for (const response of respuestas) {
-        const { paciente_id, pregunta_id, respuesta } = response;
-        await Respuesta.create({
-            paciente_id,
-            pregunta_id,
-            respuesta,
-        });
+    const transaccion = await Respuesta.sequelize.transaction();
+    try {
+        for (const response of respuestas) {
+            const { paciente_id, pregunta_id, respuesta } = response;
+            await Respuesta.create(
+                {
+                    paciente_id,
+                    pregunta_id,
+                    respuesta,
+                },
+                {
+                    transaction: transaccion
+                }
+            );
+        }
+        await transaccion.commit();
+        return "Respuestas guardadas";
+    } catch (error) {
+        return "Error al guardar las respuestas";
     }
-    return "Respuestas guardadas";
 };
 
 const putActualizarRespuesta = async (paciente_id = "", respuestas = []) => {
-    for (const response of respuestas) {
-        const { respuesta, pregunta_id } = response;
-        await Respuesta.update(
-            { respuesta },
-            {
-                where: {
-                    paciente_id,
-                    pregunta_id
+    const transaccion = await Respuesta.sequelize.transaction();
+    try {
+        for (const response of respuestas) {
+            const { respuesta, pregunta_id } = response;
+            await Respuesta.update(
+                { respuesta },
+                {
+                    where: {
+                        paciente_id,
+                        pregunta_id
+                    },
+                    transaction: transaccion
                 }
-            }
-        );
+            );
+        }
+        await transaccion.commit();
+        return "Respuestas guardadas";
+    } catch (error) {
+        return "Error al guardar las respuestas";
     }
-    return "Respuestas guardadas";
 };
 
 module.exports = {
